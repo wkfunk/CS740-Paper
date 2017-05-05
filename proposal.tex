@@ -1,0 +1,201 @@
+\RequirePackage[hyphens]{url}
+
+% see https://www.usenix.org/conferences/author-resources/paper-templates
+\documentclass[letterpaper,twocolumn,10pt]{article}
+\usepackage{usenix,epsfig,endnotes}
+
+\usepackage{url}
+\usepackage{breakurl} 
+
+\begin{document}
+
+\date{}
+
+% 1) Title - something that describes the nature of the project
+\title{\Large \bf Exploring the Feasibility of a Scalable Internet Payment Architecture}
+
+\author{
+{\rm Ed Oakes} \\
+{\rm \texttt{oakes@cs.wisc.edu}}
+\and
+{\rm Keith Funkhouser} \\
+{\rm \texttt{wfunkhouser@cs.wisc.edu}}
+}
+
+\maketitle
+
+% Ads
+% Ad-blockers
+% Auctions
+% Current solutions
+
+% 2) Abstract - provide a terse description of the problem you are addressing, why it is important and what you intend to do
+\begin{abstract}
+Online advertising revenue continues to climb higher each quarter. 
+The growth of ad-blockers has been cause for alarm for many of the 
+primary stakeholders in this complex ecosystem. Previous attempts 
+have been made, unsuccessfully, to incorporate micropayments for 
+content producers into the fabric of the internet. Here, we propose 
+a project focusing on investigating the feasibility of a scalable, 
+performant, and easy to use internet payment architecture.
+\end{abstract}
+
+% 3) Overview - similar to the abstract, provide a description of the motivation, challenges, RESEARCH QUESTION (which should be separated from the rest of the text and written in BOLD font), proposed approach (one paragraph) and expected outcomes.
+
+\section{Overview}
+Historically, online advertising has served as the primary source of
+revenue for content creators. This framework has catalyzed the rapid
+growth of the internet, as consuming quality content for free is
+extremely attractive to users. However, producing such content is not
+free for publishers who are currently left with two options: sell
+space on their site to advertisers, or move to a subscription-based
+model. Advertisements have largely won this battle, partially due to a
+few key examples of the “paywall” architecture failing to retain
+users~\cite{nyt}. This has led to a modern internet which is filled
+with publishers entirely reliant on the ads that keep their lights on.
+
+In this project, we aim to explore an alternative payment system,
+which provides users with a choice to avoid advertisements on the
+internet and still compensate publishers. Our focus in designing the
+architecture lies in two key factors: convenience and scalability. The
+ultimate goal is to minimize the burden on the user by providing a
+payment system which integrates into the current internet ecosystem,
+while designing an architecture flexible enough to scale with the
+internet. Our ultimate research question is: \\
+\\
+\textbf{Can we devise a scalable internet payment architecture that
+  supports ad-free browsing for users and fair compensation for
+  content publishers?}
+
+\section{Background}
+\subsection{Online Advertising}
+In the third quarter of 2016, U.S. advertisers invested \$17.6 billion
+in digital advertising~\cite{iabq3}. Increasingly, much of this money
+is going to mobile advertising; in the first half of 2016, mobile
+surpassed search for the first time as the leading ad
+format~\cite{iab2016}. In such a massive and diverse industry, the
+technology surrounding the online ad ecosystem has grown exceedingly
+complex. Online ads can be sourced via premium campaigns, ad networks,
+or ad exchanges and involve detailed targeting and accounting
+mechanisms~\cite{adscape}. The number of players involved is
+constantly increasing, raising the barrier to disrupt the industry
+higher than ever ~\cite{lumascape}.
+
+\subsection{Ad-blockers}
+The growth of ad-blockers in recent years has been cause for alarm for
+many current online advertising stakeholders. In a recent study of 2
+million users, Malloy et al. found U.S. ad-blocker penetration to be
+15.7-18.6\% (95\% CI)~\cite{malloy}. An active measurement study by
+Pujol et al. estimated that 22\% of users were likely using
+ad-blockers~\cite{pujol}. Surveys by various entities in the
+advertising industry have estimated that 26\% of desktop
+users~\cite{iab-blockers} and 37\% of mobile users~\cite{gwi} are
+blocking ads in the U.S. Another industry survey estimates that 309
+million are using mobile ad-blockers globally (16\% of global
+smartphone users)~\cite{pagefair}. A simple back-of-the-envelope
+calculation reveals the scale of the impact this has on content
+providers: using the most conservative of the above ad-blocker
+estimates (15.7\%) and the \$17.6 billion spent in 2016 Q3,
+publishers, marketers, and others are missing out on approximately
+\$2.8 billion in revenue per quarter due to ad-blocking users. As both
+the quantity of money invested into digital advertising and number of
+ad-blocking users grow, this figure is becoming increasingly
+significant~\cite{iab2016}.
+
+In response to this growth in ad-blocking technology, a new breed of
+partnerships are forming. Eyeo GmbH, which makes Adblock Plus
+(installed on over 100 million active devices~\cite{abp}), began its
+Acceptable Ads program in 2011, which allows “large entities” to pay
+in order to have their ads whitelisted for its users. As of 2015, this
+list was known to include Google, Microsoft, Amazon, and
+Taboola~\cite{whitelist}. Increasingly, the battle over ad-blockers is
+being fought in the courtroom. Recently, a German court banned Eyeo
+from collecting money from German publishing house Axel
+Springer~\cite{axel}. These battles point to the higher-level
+rejection of advertisements by users, and suggest that a more
+sustainable compensation model is necessary for the long-term internet
+to continue to attract users and reward content producers.
+
+% 4) Related work - provide descriptions of the key research papers (at least 3) related to your proposed study
+\section{Related Work}
+As the rejection of advertisements by users and use of ad-blocking
+software continues to grow worldwide, we must consider new models for
+financing the Web as we know it. Past attempts at incorporating
+micropayments into the Web include adding per-fee links to
+HTML~\cite{w3c} and various forms of
+crypto-currencies~\cite{peppercoin}. Recently, there have been a
+number of (primarily industrial) attempts at solving this problem with
+varying levels of success.
+
+One such attempt is a model which participates in ad auctions on
+behalf of the end user, such as Google's Contributor
+program~\cite{contributor}, which is now discontinued, and
+Atri~\cite{atri}. Though this approach will tend to find the market
+value for space on a given page, it includes network and computational
+overhead in order to participate in auctions before serving the
+page. This limits the performance benefit of removing ads from
+internet browsing, and also requires building and installing software
+to participate in each ad exchange. Additionally, Google Contributor
+was limited exclusively to advertisements served via Google AdSense,
+which resulted in a user experience which was only partially
+ad-free~\cite{adsense}.
+
+Brave, a fork of the Firefox project, is a new browser which allows
+users to divide up a monthly subscription to the sites that they visit
+most often via Bitcoin-based micropayments~\cite{brave}. The project
+uses the cryptographically secure Anonize protocol~\cite{anonize} to
+prevent a user's browsing history from being linked to their
+identity. Systems like these will face scalability concerns with
+organizing payments when dealing with a large number of content
+producers and consumers. Additionally, requiring the use of an
+entirely different browser adds a barrier of entry for new users.
+
+Sourcepoint~\cite{sourcepoint} and Blendle~\cite{blendle} offer consumers a
+“content pass” which allows them access to a variety of content
+providers for a monthly subscription. This approach is very similar to
+the “paywall” which is currently implemented on many major publisher
+sites, and will require cooperation from many large publishing players
+in order to be feasible at a larger scale.
+
+SatoshiPay~\cite{satoshi} and Autotip~\cite{autotip} allow users to
+send micropayments in Bitcoin. However, Bitcoin transaction fees have
+increased so much in recent years that micropayments are almost
+infeasible.
+
+Flattr Plus~\cite{flattrplus} (a partnership between Flattr and
+Adblock Plus) allows consumers to distribute a monthly subscription
+among selected content provides. Although the intersection of these
+two user bases is quite large (ad-blocker users and those who want to
+contribute to content providers), the implementation currently uses a
+browser extension to track user behavior, leading to privacy concerns
+
+% 5) Methods - provide a description of the way in which you intend to address the research question.  This means describing the existing tools/systems that you will use, new tools or systems that you will build and the experiments that you will conduct.
+\section{Methods}
+The approach we have decided to take for the project is
+system-building. Our task is to devise an internet payment
+architecture which fulfills our guidelines of scalability and
+maximizing usability. One of the major difficulties in this task is
+addressing the shortcomings of the attempts we've outlined above.
+
+Specifically, our plan is to explore a framework similar to that of
+Google Contributor, so we will primarily need to address the concerns of
+overhead and ad coverage. Any overhead required by our system will
+limit its scalability, preventing widespread adoption from ever being
+an option. Similarly, if our system is not able to extend to all forms
+of digital advertising, ad-blocking users who are used to entirely
+ad-free viewing will not be attracted to using it. Hence, we must find a
+way to replace all advertisements (those from premium campaigns, ad
+networks, and ad exchanges), rather than only those from one source.
+
+There are also some practical questions which are left to be answered,
+such as the feasibility of entering the advertising industry from a
+business standpoint, but we will consider those outside the scope of
+the project; our focus lies in design and implementation.
+
+{\footnotesize \bibliographystyle{acm}
+% 6) Bibliography - list related work using standard bibliographic form.  Simply listing titles and providing web links is not acceptable.
+\bibliography{biblio}}
+
+%\theendnotes
+
+\end{document}
