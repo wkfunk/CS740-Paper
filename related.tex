@@ -1,0 +1,52 @@
+% 4) Related work - provide descriptions of the key research papers (at least 3) related to your proposed study
+\section{Related Work}
+As the rejection of advertisements by users and use of ad-blocking
+software continues to grow worldwide, we must consider new models for
+financing the Web as we know it. Past attempts at incorporating
+micropayments into the Web include adding per-fee links to
+HTML~\cite{w3c} and various forms of
+crypto-currencies~\cite{peppercoin}. Recently, there have been a
+number of (primarily industrial) attempts at solving this problem with
+varying levels of success.
+
+One such attempt is a model which participates in ad auctions on
+behalf of the end user, such as Google's Contributor
+program~\cite{contributor}, which is now discontinued, and
+Atri~\cite{atri}. Though this approach will tend to find the market
+value for space on a given page, it includes network and computational
+overhead in order to participate in auctions before serving the
+page. This limits the performance benefit of removing ads from
+internet browsing, and also requires building and installing software
+to participate in each ad exchange. Additionally, Google Contributor
+was limited exclusively to advertisements served via Google AdSense,
+which resulted in a user experience which was only partially
+ad-free~\cite{adsense}.
+
+Brave, a fork of the Firefox project, is a new browser which allows
+users to divide up a monthly subscription to the sites that they visit
+most often via Bitcoin-based micropayments~\cite{brave}. The project
+uses the cryptographically secure Anonize protocol~\cite{anonize} to
+prevent a user's browsing history from being linked to their
+identity. Systems like these will face scalability concerns with
+organizing payments when dealing with a large number of content
+producers and consumers. Additionally, requiring the use of an
+entirely different browser adds a barrier of entry for new users.
+
+Sourcepoint~\cite{sourcepoint} and Blendle~\cite{blendle} offer consumers a
+“content pass” which allows them access to a variety of content
+providers for a monthly subscription. This approach is very similar to
+the “paywall” which is currently implemented on many major publisher
+sites, and will require cooperation from many large publishing players
+in order to be feasible at a larger scale.
+
+SatoshiPay~\cite{satoshi} and Autotip~\cite{autotip} allow users to
+send micropayments in Bitcoin. However, Bitcoin transaction fees have
+increased so much in recent years that micropayments are almost
+infeasible.
+
+Flattr Plus~\cite{flattrplus} (a partnership between Flattr and
+Adblock Plus) allows consumers to distribute a monthly subscription
+among selected content provides. Although the intersection of these
+two user bases is quite large (ad-blocker users and those who want to
+contribute to content providers), the implementation currently uses a
+browser extension to track user behavior, leading to privacy concerns

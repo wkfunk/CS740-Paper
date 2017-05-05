@@ -1,0 +1,36 @@
+\RequirePackage[hyphens]{url}
+
+% see https://www.usenix.org/conferences/author-resources/paper-templates
+\documentclass[letterpaper,twocolumn,10pt]{article}
+\usepackage{usenix,epsfig,endnotes}
+
+\usepackage{url}
+\usepackage{hyperref} 
+\usepackage{breakurl} 
+
+\begin{document}
+
+\date{}
+
+% 1) Title - something that describes the nature of the project
+\title{\Large \bf Exploring the Feasibility of a Scalable Internet Payment Architecture}
+
+\author{
+{\rm Ed Oakes} \\
+{\rm \texttt{oakes@cs.wisc.edu}}
+\and
+{\rm Keith Funkhouser} \\
+{\rm \texttt{wfunkhouser@cs.wisc.edu}}
+}
+
+\maketitle
+
+\input{body}
+
+{\footnotesize \bibliographystyle{acm}
+% 6) Bibliography - list related work using standard bibliographic form.  Simply listing titles and providing web links is not acceptable.
+\bibliography{biblio}}
+
+%\theendnotes
+
+\end{document}
