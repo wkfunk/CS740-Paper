@@ -152,11 +152,14 @@ We note that this solution does \textit{not} address the needs of users whose fo
 There was a large difference in the technical challenge presented by making modifications to uBlock Origin and to the perceptual blocker.
 In the case of the perceptual blocker, the ad recognition and covering sections of the code were completely separate, allowing us to add our tweaks to the covering code (only called when an ad is recognized) in only a few simple lines.
 Our understanding of the extension was also aided by the fact that the perceptual blocker was well-commented and is more of a proof of concept than a production-ready piece of software, meaning that there were far fewer optimizations and less corner-case handling.
-This allowed us to easily fit our modifications in to only one section of the code with minimal debugging pain.
+This simplicity allowed us to easily fit our modifications in to only one section of the code with minimal debugging pain.
 On the other hand, uBlock Origin is a more complicated piece of software, which includes many optimizations to reduce the memory footprint and computational overhead of its ad-blocking.
-
-The ease of understanding the perceptual blocker code was aided by the fact that it is more of a proof of concept than a production-ready piece of software.
-This means there are far fewer optimizations and 
+Additionally, although the extension is open source, it is almost entirely maintained by a single developer and while there is a fairly complete wiki explaining the design of the extension, the code itself is quite barren of comments.
+This led to many hours spent just trying to figure out the end-to-end workflow of blocking a single ad, which involves 3 different identification mechanisms (dynamic URL filtering, dynamic host filtering, and static URL filtering) as well as a caching mechanism to prevent redundant lookups.
+Our first iteration simply probabalistically let through ads which had been marked by one of the identification mechanisms, but this turned out to block far too many ads because a given ad may have upwards of 10 redirects and requests associated with it and blocking any of these would prevent the ad from being served.
+This led us to come up with a better solution: adding a second, position-based, cache which identified the position on the page of the iframe associated with an ad-related request and made a single decision to block or allow all requests for that iframe.
+Although not perfect (multiple ads could have a position, positions could change, etc), this additional cache provided far more predictable and accurate results.
+This development time was definitely well-spent, as we learned not only how ad-blockers function in practice, but had the opportunity to learn some javascript and the anatomy of browser extensions, both of which are integral parts of the modern web and aren't something we've worked with in the past.
 
 Looking forward, there are many more directions to explore with this idea of user-configurable ad-blocking.
 For example, while a request-based blocker doesn't allow for blocking based on a display size threshold, one similar option that could be implemented is blocking based on media element size (i.e., in bytes).
