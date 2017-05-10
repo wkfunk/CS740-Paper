@@ -1,6 +1,6 @@
 % 5) Methods - provide a description of the way in which you intend to address the research question.  This means describing the existing tools/systems that you will use, new tools or systems that you will build and the experiments that you will conduct.
 \section{Harpocrates}
-In this section, we present our design for a system, Harpocrates (Greek god of silence, secrets, and confidentidality), which allows users to easily compensate publishers at a fair rate for their content without being forced to view ads.
+In this section, we present our design for a system, Harpocrates (Greek god of silence, secrets, and confidentiality), which allows users to easily compensate publishers at a fair rate for their content without being forced to view ads.
 Harpocrates is composed of a client-side browser extension for users to configure their preferences and a server for bidding on ad placements and accounting of payments between users and publishers.
 The main focus of Harpocrates is that it fits into the current ad ecosystem with minimal implementation work required for publishers.
 
@@ -96,9 +96,9 @@ The extension uses multiple such community-maintained lists, and matches against
 
 Our modification to the uBlock Origin is a notion of ``Ad Tolerance'', a configurable setting from 0-100\% which determines what proportion of ads will be shown to the user on any given page.
 If the user has their tolerance set to 0\%, the extension will block all ads like uBlock Origin usually does and if the user has their tolerance set to 100\% then the extension won't function as an ad-blocker at all.
-Any setting between 0 and 100\% will result in each ad element probabalistically being blocked (Figure ~\ref{fig:unacceptable}).
-The reason for probabalistic blocking is that it is a very difficult problem to predict the number of total ads that will be shown on a page before the page has fully rendered, so blocking a pre-determined number of elements is impractical.
-While probabalistic dropping means that the proportion of ads blocked might not be exactly as expected on every page, in the long run the number of ads blocked will very closely match the specified proportion.
+Any setting between 0 and 100\% will result in each ad element probabilistically being blocked (Figure ~\ref{fig:unacceptable}).
+The reason for probabilistic blocking is that it is a very difficult problem to predict the number of total ads that will be shown on a page before the page has fully rendered, so blocking a pre-determined number of elements is impractical.
+While probabilistic dropping means that the proportion of ads blocked might not be exactly as expected on every page, in the long run the number of ads blocked will very closely match the specified proportion.
 
 \subsection{Perceptual Blocker}
 Storey, et al.~\cite{storey2016future} recently published work on what they dubbed a ``perceptual blocker'', which blocks ads based on their visual content rather than their associated Web requests or the structure of the page.
@@ -119,13 +119,13 @@ This raises a broader question about the morality of perceptual blockers, and su
 \label{fig:unacceptable}
 \end{figure}
 
-Our first modification to the perceptual blocker is the same as that which we made to uBlock Origin, adding a configurable tolerance level which probabalistically blocks the ads it encounters.
+Our first modification to the perceptual blocker is the same as that which we made to uBlock Origin, adding a configurable tolerance level which probabilistically blocks the ads it encounters.
 We also added a second configuration to this blocker, which allows the user to specify a maximum width and height of ad elements which they are willing to see (Figure ~\ref{fig:unacceptable_ui}).
 This highlights a key benefit to the perceptual blocker, because the ads are completely delivered before blocking occurs, the blocker has a more complete set of information about the ad's qualities (e.g., size, content, placement on the page) when the blocking decision is made.
 We use this additional information to block ads above a certain size, but this could be extended to other configurations, such as recognizing and blocking inappropriate ads.
 
 
-Our first modification to the perceptual blocker is the same as that which we made to uBlock Origin, adding a configurable tolerance level which probabalistically blocks the ads it encounters.
+Our first modification to the perceptual blocker is the same as that which we made to uBlock Origin, adding a configurable tolerance level which probabilistically blocks the ads it encounters.
 We also added a second configuration to this blocker, which allows the user to specify a maximum width and height of ad elements which they are willing to see (Figure ~\ref{fig:unacceptable_ui}).
 This highlights a key benefit to the perceptual blocker, because the ads are completely delivered before blocking occurs, the blocker has a more complete set of information about the ad's qualities (e.g., size, content, placement on the page) when the blocking decision is made.
 We use this additional information to block ads above a certain size, but this could be extended to other configurations, such as recognizing and blocking inappropriate ads.
@@ -133,7 +133,7 @@ We use this additional information to block ads above a certain size, but this c
 \subsection{Performance}
 In order to assess the impact of ad-blockers on performance, we performed an experiment to measure page load times with and without uBlock Origin enabled.
 The five sites which we chose to measure load times on were the five most popular news sites based on the Alexa ranking~\cite{alexa}.
-We loaded each site 10 times under each condition and averaged the results, closing the browser between loads to ensure that a full rendering occured.
+We loaded each site 10 times under each condition and averaged the results, closing the browser between loads to ensure that a full rendering occurred.
 Page load times were measured using the Chrome extension ``Page Load Time''~\cite{pageloadtime}, which considers a page fully loaded once all elements have finished rendering.
 We deliberately chose not to clear the local browser cache between page loads, recognizing that in practice Web content is often cached locally.
 The results validate survey findings that many users use ad-blockers for performance reasons~\cite{hubspot2016adblock}, as there was an average of a 2.33x speedup in load time with uBlock Origin enabled (Figure ~\ref{fig:load_times}).
@@ -173,7 +173,7 @@ On the other hand, uBlock Origin is a more complicated piece of software and inc
 Additionally, although the extension is open source, it is almost entirely maintained by a single developer.
 While there is a fairly complete wiki explaining the design of the extension, the code itself is quite barren of comments.
 This led to many hours spent just trying to figure out the end-to-end workflow of blocking a single ad, which involves 3 different identification mechanisms (dynamic URL filtering, dynamic host filtering, and static URL filtering) as well as a caching mechanism to prevent redundant lookups.
-Our first iteration simply probabalistically let through ads which had been marked by one of the identification mechanisms, but this turned out to block far too many ads.
+Our first iteration simply probabilistically let through ads which had been marked by one of the identification mechanisms, but this turned out to block far too many ads.
 The excessive blocking occurred because a given ad may have upwards of 10 redirects and requests associated with it, and blocking any of these would prevent the ad from being served.
 This led us to come up with a better solution: adding a second, position-based, cache which identified the position on the page of the iframe associated with an ad-related request and made a single decision to block or allow all requests for that iframe.
 Although not perfect (multiple ads could have the same position, positions could change, etc.), this additional cache provided far more predictable and accurate results.
