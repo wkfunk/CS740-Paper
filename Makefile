@@ -1,9 +1,8 @@
 main.pdf : *.tex biblio.bib
-	latex main.tex
+	pdflatex main.tex
 	bibtex main
-	latex main.tex
-	latex main.tex
-	dvipdf main.dvi
+	pdflatex main.tex
+	pdflatex main.tex
 
 clean :
-	rm -f main.dvi main.bbl main.blg main.log main.pdf missfont.log main.aux
+	rm -f main.bbl main.blg main.log main.pdf missfont.log main.aux main.out
