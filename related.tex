@@ -17,44 +17,21 @@ Although each of these projects had unique approaches to architecture and implem
 Interest in online microtransactions has experienced a growing resurgence over the last decade.
 As the use of ad-blocking software continues to grow worldwide, publishers and users alike realize that we must consider new models for financing the Web as we know it.
 
-One such attempt is a model which participates in ad auctions on
-behalf of the end user, such as Google's Contributor
-program~\cite{contributor}, which is now discontinued, and
-Atri~\cite{atri}. Though this approach will tend to find the market
-value for space on a given page, it includes network and computational
-overhead in order to participate in auctions before serving the
-page. This limits the performance benefit of removing ads from
-internet browsing, and also requires building and installing software
-to participate in each ad exchange. Additionally, Google Contributor
-was limited exclusively to advertisements served via Google AdSense,
-which resulted in a user experience which was only partially
-ad-free~\cite{adsense}.
+One such attempt is a model which participates in ad auctions on behalf of the end user, such as Google's Contributor program~\cite{contributor}, which is now discontinued, and Atri~\cite{atri}.
+Though this approach will tend to find the market value for space on a given page, it includes network and computational overhead in order to participate in auctions before serving the page.
+This limits the performance benefit of removing ads from internet browsing, and also requires building and installing software to participate in each ad exchange.
+Additionally, Google Contributor was limited exclusively to advertisements served via Google AdSense, which resulted in a user experience which was only partially ad-free~\cite{adsense}.
 
-Brave, a fork of the Firefox project, is a new browser which allows
-users to divide up a monthly subscription to the sites that they visit
-most often via Bitcoin-based micropayments~\cite{brave}. The project
-uses the cryptographically secure Anonize protocol~\cite{anonize} to
-prevent a user's browsing history from being linked to their
-identity. Systems like these will face scalability concerns with
-organizing payments when dealing with a large number of content
-producers and consumers. Additionally, requiring the use of an
-entirely different browser adds a barrier of entry for new users.
+Brave, a fork of the Firefox project, is a new browser which allows users to divide up a monthly subscription to the sites that they visit most often via Bitcoin-based micropayments~\cite{brave}.
+The project uses the cryptographically secure Anonize protocol~\cite{anonize} to prevent a user's browsing history from being linked to their identity.
+Systems like these will face scalability concerns with organizing payments when dealing with a large number of content producers and consumers.
+Additionally, requiring the use of an entirely different browser adds a barrier of entry for new users.
 
-Sourcepoint~\cite{sourcepoint} and Blendle~\cite{blendle} offer consumers a
-“content pass” which allows them access to a variety of content
-providers for a monthly subscription. This approach is very similar to
-the “paywall” which is currently implemented on many major publisher
-sites, and will require cooperation from many large publishing players
-in order to be feasible at a larger scale.
+Sourcepoint~\cite{sourcepoint} and Blendle~\cite{blendle} offer consumers a “content pass” which allows them access to a variety of content providers for a monthly subscription.
+This approach is very similar to the ``paywall'' which is currently implemented on many major publisher sites, and will require cooperation from many large publishing players in order to be feasible at a larger scale.
 
-SatoshiPay~\cite{satoshi} and Autotip~\cite{autotip} allow users to
-send micropayments in Bitcoin. However, Bitcoin transaction fees have
-increased so much in recent years that micropayments are almost
-infeasible.
+SatoshiPay~\cite{satoshi} and Autotip~\cite{autotip} allow users to send micropayments in Bitcoin.
+However, Bitcoin transaction fees have increased so much in recent years that micropayments are almost infeasible.
 
-Flattr Plus~\cite{flattrplus} (a partnership between Flattr and
-Adblock Plus) allows consumers to distribute a monthly subscription
-among selected content provides. Although the intersection of these
-two user bases is quite large (ad-blocker users and those who want to
-contribute to content providers), the implementation currently uses a
-browser extension to track user behavior, leading to privacy concerns
+Flattr Plus~\cite{flattrplus} (a partnership between Flattr and Adblock Plus) allows consumers to distribute a monthly subscription among selected content provides.
+Although the intersection of these two user bases is quite large (ad-blocker users and those who want to contribute to content providers), the implementation currently uses a browser extension to track user behavior, leading to privacy concerns
