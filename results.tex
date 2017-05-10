@@ -33,7 +33,7 @@ This design very cleanly fits into the current ecosystem, and requires very mini
 This solution relies on fact that publishers ad servers and ad exchanges are efficient marketplaces for determining the fair value for a given piece of ``real estate'' on the internet.
 In order to take advantage of this fact, Harpocrates sits inline in the ad ``waterfall'' that currently exists in many publisher ad servers (Figure ~\ref{fig:waterfall}).
 
-\begin{figure}[h]
+\begin{figure}[t]
 \centering
 \includegraphics[width=0.5\textwidth]{waterfall}
 \caption{Harpocrates sits inline with the current ad exchange ecosystem.}
@@ -48,7 +48,7 @@ From the user's point of view, Harpocrates is simply a browser extension  (Figur
 They don't need to have any knowledge of the complex ad ecosystem, only that they are directly compensating the content publishers.
 In addition, users can elect to fall back on blocking ads even when the Harpocrates bid server does not win a given auction.
 
-\begin{figure}[h]
+\begin{figure}[t]
 \centering
 \includegraphics[width=0.5\textwidth]{harpocrates_ui}
 \caption{For the user, Harpocrates simply requires installing a browser extension and initializing a few settings.}
@@ -67,7 +67,7 @@ The one design point which we do not hit is that of user security/privacy concer
 Unfortunately, because Harpocrates doesn't restrict publishers from serving ads, and needs to be able to make market-rate bids on ad space in order to serve its purpose, user tracking is still necessary.
 Despite this, however, we believe that Harpocrates' scalability and ease of use for both users and publishers makes it a promising alternative to the ad-based payment model of the internet as we know it today.
 
-\begin{figure}[h]
+\begin{figure}[t]
 \centering
 \includegraphics[width=0.5\textwidth]{harpocrates}
 \caption{Harpocrates removes the actual ad media element delivery process, cutting out a roundtrip request to the ad server content delivery network and improving performance.}
@@ -87,6 +87,13 @@ This strategy offers significant performance benefits, as it reduces network tra
 Identifying ad-related network requests is done by matching target URLs against a list of known advertising URLs (e.g., EasyList~\cite{easylist}).
 The extension uses multiple such community-maintained lists, and matches against them using a combination of simple lookups and regular expressions.
 
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.15\textwidth]{unacceptable_ui}
+\caption{User interface for our modification of the Perceptual Blocker.}
+\label{fig:unacceptable_ui}
+\end{figure}
+
 Our modification to the uBlock Origin is a notion of ``Ad Tolerance'', a configurable setting from 0-100\% which determines what proportion of ads will be shown to the user on any given page.
 If the user has their tolerance set to 0\%, the extension will block all ads like uBlock Origin usually does and if the user has their tolerance set to 100\% then the extension won't function as an ad-blocker at all.
 Any setting between 0 and 100\% will result in each ad element probabalistically being blocked (Figure ~\ref{fig:unacceptable}).
@@ -102,19 +109,7 @@ The blocker that they developed puts this idea into practice, and covers all vis
 Covering ads rather than completely hiding them is deliberate, as the researchers wanted to avoid potential backlash from the advertising community, which is discomforted by the idea that their ads could be completely delivered but still not presented to a user - leaving them paying for an impression which didn't actually happen.
 This raises a broader question about the morality of perceptual blockers, and suggests that if these blockers were to become popular, advertisers would have to make a significant engineering effort to maintain accurate impression accounting in their presence.
 
-Our first modification to the perceptual blocker is the same as that which we made to uBlock Origin, adding a configurable tolerance level which probabalistically blocks the ads it encounters.
-We also added a second configuration to this blocker, which allows the user to specify a maximum width and height of ad elements which they are willing to see (Figure ~\ref{fig:unacceptable_ui}).
-This highlights a key benefit to the perceptual blocker, because the ads are completely delivered before blocking occurs, the blocker has a more complete set of information about the ad's qualities (e.g., size, content, placement on the page) when the blocking decision is made.
-We use this additional information to block ads above a certain size, but this could be extended to other configurations, such as recognizing and blocking inappropriate ads.
-
-\begin{figure}[h]
-\centering
-\includegraphics[width=0.15\textwidth]{unacceptable_ui}
-\caption{User interface for our modification of the Perceptual Blocker.}
-\label{fig:unacceptable_ui}
-\end{figure}
-
-\begin{figure}[h]
+\begin{figure}[t]
 \hfill
 \subfigure{\includegraphics[width=0.15\textwidth]{unacceptable_no_tolerance}}
 \hfill
@@ -124,6 +119,11 @@ We use this additional information to block ads above a certain size, but this c
 \label{fig:unacceptable}
 \end{figure}
 
+Our first modification to the perceptual blocker is the same as that which we made to uBlock Origin, adding a configurable tolerance level which probabalistically blocks the ads it encounters.
+We also added a second configuration to this blocker, which allows the user to specify a maximum width and height of ad elements which they are willing to see (Figure ~\ref{fig:unacceptable_ui}).
+This highlights a key benefit to the perceptual blocker, because the ads are completely delivered before blocking occurs, the blocker has a more complete set of information about the ad's qualities (e.g., size, content, placement on the page) when the blocking decision is made.
+We use this additional information to block ads above a certain size, but this could be extended to other configurations, such as recognizing and blocking inappropriate ads.
+
 \subsection{Performance}
 In order to assess the impact of ad-blockers on performance, we performed an experiment to measure page load times with and without uBlock Origin enabled.
 The five sites which we chose to measure load times on were the five most popular news sites based on the Alexa ranking~\cite{alexa}.
@@ -132,7 +132,7 @@ Page load times were measured using the Chrome extension ``Page Load Time''~\cit
 We deliberately chose not to clear the local browser cache between page loads, recognizing that in practice Web content is often cached locally.
 The results validate survey findings that many users use ad-blockers for performance reasons~\cite{hubspot2016adblock}, as there was an average of a 2.33x speedup in load time with uBlock Origin enabled (Figure ~\ref{fig:load_times}).
 
-\begin{figure}[h]
+\begin{figure}[t]
 \centering
 \includegraphics[width=0.5\textwidth]{load_times}
 \caption{Loading times for five popular Websites with and without the popular ad-blocker uBlock Origin.}
@@ -147,7 +147,7 @@ Preventing Web requests from ever leaving the client browser results in a decrea
 One thing to note is that we consider a page to be done loading when the page is fully rendered, but this doesn't include the additional time required in the case of the perceptual blocker to identify and cover ads.
 While this occurs quickly, there is some computational overhead associated with visually scanning the Web page which should be considered when comparing the two techniques.
 
-\begin{figure}[h]
+\begin{figure}[t]
 \centering
 \includegraphics[width=0.5\textwidth]{load_times_over_range}
 \caption{Loading times for Chicago Tribune homepage with varying levels of tolerance for ads using the \textit{Un}acceptable Ads extensions.}
