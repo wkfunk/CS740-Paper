@@ -1,13 +1,21 @@
 % 4) Related work - provide descriptions of the key research papers (at least 3) related to your proposed study
 \section{Related Work}
-As the rejection of advertisements by users and use of ad-blocking
-software continues to grow worldwide, we must consider new models for
-financing the Web as we know it. Past attempts at incorporating
-micropayments into the Web include adding per-fee links to
-HTML~\cite{w3c} and various forms of
-crypto-currencies~\cite{peppercoin}. Recently, there have been a
-number of (primarily industrial) attempts at solving this problem with
-varying levels of success.
+
+\subsection{Academic}
+The idea of using ``digital cash'' to facilitate transactions online experienced substantial popularity in the late 1980's and early 1990's.
+Chaum was one of the first to introduce the concept of an anonymous, untraceable micropayments (then, a ``blind signature cryptosystem'')~\cite{chaum1983blind}.
+Later, this work was expanded to prevent duplication of coins~\cite{chaum1990untraceable}, and eventually spun off into the company DigiCash~\cite{schoenmakers1998security}.
+Dukach's SNPP (Simple Network Payment Protocol) represents one of the first fully-described micropayment protocols~\cite{dukach1992snpp}.
+Wheeler~\cite{wheeler1997transactions} and Rivest~\cite{rivest1997electronic} studied ``probabilistic'' micropayment schemes, in which the ``bank'' only cashes a small percentage of ``checks'', but in the long run everyone ends up paying the correct amount of money.
+This work spawned the startup Peppercoin, which was eventually acquired.
+Work at DEC on Millicent~\cite{manasse1995millicent} inspired Rivest and Shamir's work on two schemes, PayWord (credit-based) and MicroMint (less secure but faster)~\cite{rivest1997payword}, although these same ideas had been proposed shortly before by Anderson et al.~\cite{anderson1997netcard}.
+IBM developed a micropayment-based extension for their \textit{i}KP macropayment system~\cite{hauser1996micro}.
+
+Although each of these projects had unique approaches to architecture and implementation details, the design parameters primarily revolved around some subset of anonymity, reliability, trust, scalability, usability, and security. Some work has been done to classify and characterize these manifold schemes across various axes~\cite{abrazhevich2001classification,parhonyi2005second,parhonyi2006fall}. They each foresaw the advent of small transactions on the Web for content like music (e.g. \$1 songs on iTunes), however the majority of work was invested in the technology rather than supporting and increasing adoption. In particular, the need for widespread adoption of a micropayment system by both customers and sellers led to the eventual death of each system in its own time.
+
+\subsection{Commercial}
+Interest in online microtransactions has experienced a growing resurgence over the last decade.
+As the use of ad-blocking software continues to grow worldwide, publishers and users alike realize that we must consider new models for financing the Web as we know it.
 
 One such attempt is a model which participates in ad auctions on
 behalf of the end user, such as Google's Contributor
