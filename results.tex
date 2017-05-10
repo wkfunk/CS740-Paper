@@ -1,11 +1,10 @@
 % 5) Methods - provide a description of the way in which you intend to address the research question.  This means describing the existing tools/systems that you will use, new tools or systems that you will build and the experiments that you will conduct.
-\section{Results}
-\subsection{Harpocrates}
+\section{Harpocrates}
 In this section, we present our design for a system, Harpocrates (Greek god of silence, secrets, and confidentidality), which allows users to easily compensate publishers at a fair rate for their content without being forced to view ads.
 Harpocrates is composed of a client-side browser extension for users to configure their preferences and a server for bidding on ad placements and accounting of payments between users and publishers.
 The main focus of Harpocrates is that it fits into the current ad ecosystem with minimal implementation work required for publishers.
 
-\subsubsection{Design Considerations}
+\subsection{Design Considerations}
 In designing Harpocrates, there was a clear set of requirements which, if not accomplished, would yield a system infeasible for wide deployment.
 
 First, the system must address the concerns of current ad-blocker users. This is the number one design principle, as if the system doesn't provide users with at least a subset of the benefits they receive from blocking ads, they won't even consider using it. We define these concerns as three main considerations: intrusiveness, performance, and security/privacy, derived from a 2016 HubSpot survey of 731 Adblock Plus users on why they block ads~\cite{hubspot2016adblock}.
@@ -27,7 +26,7 @@ Currently, publishers are essentially locked in to using a combination of subscr
 We want to provide an alternative which can be opted into and out of easily for both publishers and users, which lets them shape their own browsing experience.
 By enabling publishers to recoup some of the lost revenue due to blockers, and enabling users to opt-in to funding their favorite content, both parties benefit.
 
-\subsubsection{Architecture}
+\subsection{Architecture}
 Ultimately, Harpocrates can be seen as a Web ad network, which places ``blank ads'' instead of images or videos and whose advertisers (those paying for the ad placements) are the users themselves.
 Users specify a monthly ``budget,'' which Harpocrates then uses to bid on each ad that a publisher wants to sell.
 This design very cleanly fits into the current ecosystem, and requires very minimal effort from the user: they only have to register with one entity, Harpocrates, and they need only set their preferences at least once in order to get off the ground, directly compensating publishers and seeing fewer ads.
@@ -75,13 +74,13 @@ Despite this, however, we believe that Harpocrates' scalability and ease of use 
 \label{fig:harpocrates}
 \end{figure}
 
-\subsection{\textit{Un}acceptable Ads}
+\section{\textit{Un}acceptable Ads}
 \textit{Un}acceptable Ads is a proof of concept to illustrate a more immediate path forwards for users who block ads because of the reduced performance and/or visual obtrusiveness.
 Relying on the idea that users are willing to see some ads in order to support content publishers, our goal is to allow users to specify the number and type of ads that they do not want to see.
 This idea is similar in motivation to the Acceptable Ads program run by Adblock Plus, but where Acceptable Ads are determined by the Adblock Plus organization and advertisers can pay to be whitelisted, our system will put the control directly in the user's hands.
 To realize this idea, we have modified two Chrome extensions: uBlock Origin, a request-based blocker, and a ``perceptual blocker'' which was recently developed by Storey, et al.~\cite{storey2016future} at Princeton University.
 
-\subsubsection{uBlock Origin}
+\subsection{uBlock Origin}
 uBlock Origin is a popular open source desktop ad-blocker with nearly 9 million installs on Google Chrome as of May 2017.
 This blocker is categorized as a request-based blocker, meaning that it recognizes Web requests which are targeted at ad-related servers and prevents them from ever leaving the client's browser.
 This strategy offers significant performance benefits, as it reduces network traffic and prevents (often large) media elements from being received and rendered in the client browser.
@@ -94,7 +93,7 @@ Any setting between 0 and 100\% will result in each ad element probabalistically
 The reason for probabalistic blocking is that it is a very difficult problem to predict the number of total ads that will be shown on a page before the page has fully rendered, so blocking a pre-determined number of elements is impractical.
 While probabalistic dropping means that the proportion of ads blocked might not be exactly as expected on every page, in the long run the number of ads blocked will very closely match the specified proportion.
 
-\subsubsection{Perceptual Blocker}
+\subsection{Perceptual Blocker}
 Storey, et al.~\cite{storey2016future} recently published work on what they dubbed a ``perceptual blocker'', which blocks ads based on their visual content rather than their associated Web requests or the structure of the page.
 The primary observation which this work is based on is that there have been many efforts recently to standardize ad policies on the internet through joint coalitions such as AdChoices~\cite{adchoices}.
 Such programs require ads to identify themselves by including text such as "from our advertisers" or by displaying a common logo, such as the AdChoices logo.
@@ -155,7 +154,7 @@ While this occurs quickly, there is some computational overhead associated with 
 \label{fig:load_times_over_range}
 \end{figure}
 
-\subsubsection{Summary and Technical Challenges}
+\subsection{Summary and Technical Challenges}
 These extensions serve as two separate proofs of concept for a new generation of ad-blockers which could allow for a more fine-grained tuning of what types of ads are blocked.
 This approach can provide partial or full compensation for the publisher while still addressing user concerns about the performance and/or visual issues associated with ads.
 We note that this solution does \textit{not} address the needs of users whose foremost concern is privacy, and leave that concern for future work.
