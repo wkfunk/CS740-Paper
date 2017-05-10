@@ -1,27 +1,30 @@
 % 5) Methods - provide a description of the way in which you intend to address the research question.  This means describing the existing tools/systems that you will use, new tools or systems that you will build and the experiments that you will conduct.
 \section{Results}
 \subsection{Harpocrates}
-We designed a system, Harpocrates (Greek god of silence, secrets, and confidentidality), which allows users to easily compensate publishers at a fair rate for their content.
-Harpocrates is composed of a client-side browser extension for users and a server for accounting.
-Furthermore, it fits into the current ad ecosystem with minimal implementation work required for publishers.
+In this section, we preset our design for a system, Harpocrates (Greek god of silence, secrets, and confidentidality), which allows users to easily compensate publishers at a fair rate for their content without being forced to view ads..
+Harpocrates is composed of a client-side browser extension for users to configure their preferences and a server for bidding on ad placements and accounting of payments between users and publishers.
+The main focus of Harpocrates is that it fits into the current ad ecosystem with minimal implementation work required for publishers.
 
 \subsubsection{Design Considerations}
-In designing Harpocrates, there was a clear set of requirements whic, if not accomplished, would yield a system infeasible for wide deployment.
-First, it must address the needs of current ad-blocker users, else they would not consider using it.
+In designing Harpocrates, there was a clear set of requirements which, if not accomplished, would yield a system infeasible for wide deployment.
 
-It must also be unobtrusive and get our of the user's way.
-For example, with our current design, there is a very simple settings page that allows the user to pick a budget, etc.
-The rest of the logic happens erver-side, improving user experience.
+First, the system must address the concerns of current ad-blocker users. This is the number one design principle, as if the system doesn't provide users with at least a subset of the benefits they receive from blocking ads, they won't even consider using it. We define these concerns as three main considerations: intrusiveness, performance, and security/privacy, derived from a 2016 HubSpot survey of 731 Adblock Plus users on why they block ads~\cite{hubspot2016adblock}.
 
-Performance must improve over the current Web experience without an ad-blocker.
-Surveys show that a substantial proportion of users use ad-blockers for performance reasons~\cite{hubspot2016adblock}, so any substitute should strive to address that concern specifically.
+The system must also be as unobtrusive to the user as possible.
+Web users are accustomed to convenience and an uninhibited browsing experience, and our system should follow this pattern to attract users.
+For example, with our current design, there is a very simple settings page which a user need only visit once at minimum, allowing them to specify their budget.
+Beyond that everything is handled on the back-end.
 
-The system should fit into the current Web ecosystem, i.e. must not rely on any new standards in order for it to see wide adoption.
-Correspondingly, the implementation cost for publishers must be minimized, because it will never see wide adoption without publishers' acceptance.
-This means that solutions that involve adding server-side code, such as would be required to enable many of the services described in Section ~\ref{academic_related}.
+The system should fit into the current Web ecosystem.
+This means that we cannot rely on any new standards or widely-implemented protocols in order to see wide adoption.
+Correspondingly, the implementation cost for publishers must be minimized, because it will never see wide adoption if it requires a complex or custom implementation for each publisher.
+This means that solutions that involve adding significant server-side code, such as would be required to enable many of the services described in Section ~\ref{academic_related}, are out of the question.
+Another key piece to fitting into the Web payment infrastructure is that our system needs to be able to coexist with ad networks as they exist today.
+Many Web publishers survive exclusively off of ad revenue, and they cannot be expected to switch to an entirely new compensation model which abandons the tried-and-true ad revenue model.
 
-Finally, it must provide control over the browsing experience for both users and publishers alike.
-Currently, publishers are essentially locked in to using a combination of subscription and ad tactics for revenue.
+Finally, the system must provide control over the browsing experience for both users and publishers alike.
+Currently, publishers are essentially locked in to using a combination of subscription and ad tactics for revenue and users are locked in to paying for these subscriptions and seeing ads across the Web.
+We want to provide an alternative which can be opted into and out of easily for both publishers and users, which lets them shape their own browsing experience.
 By enabling them to recoup some of the lost revenue due to blockers, and enabling users to opt-in to funding their favorite content, both parties benefit.
 
 \subsubsection{Architecture}
@@ -72,7 +75,7 @@ To realize this idea, we have modified two Chrome extensions: uBlock Origin, a r
 
 \subsubsection{uBlock Origin}
 uBlock Origin is a popular open source desktop ad-blocker with nearly 9 million installs on Google Chrome as of May 2017.
-This blocker is categorized as a request-based blocker, meaning that it recognizes web requests which are targeted at ad-related servers and prevents them from ever leaving the client's browser.
+This blocker is categorized as a request-based blocker, meaning that it recognizes Web requests which are targeted at ad-related servers and prevents them from ever leaving the client's browser.
 This strategy offers significant performance benefits, as it reduces network traffic and prevents (often large) media elements from being received and rendered in the client browser.
 Identifying ad-related network requests is done by matching target URLs against a list of known advertising URLs (e.g. EasyList~\cite{easylist}).
 The extension uses multiple such community-maintained lists, and matches against them using a combination of simple lookups and regular expressions.
@@ -84,7 +87,7 @@ The reason for probabalistic blocking is that it is a very difficult problem to 
 While probabalistic dropping means that the proportion of ads blocked might not be exactly as expected on every page, in the long run the number of ads blocked will very closely match the specified proportion.
 
 \subsubsection{Perceptual Blocker}
-Storey, et al.~\cite{storey2016future} recently published work on what they dubbed a ``perceptual blocker'', which blocks ads based on their visual content rather than their associated web requests or the structure of the page.
+Storey, et al.~\cite{storey2016future} recently published work on what they dubbed a ``perceptual blocker'', which blocks ads based on their visual content rather than their associated Web requests or the structure of the page.
 The primary observation which this work is based on is that there have been many efforts recently to standardize ad policies on the internet through joint coalitions such as AdChoices~\cite{adchoices}.
 Such programs require ads to identify themselves by including text such as "from our advertisers" or by displaying a common logo, such as the AdChoices logo.
 Storey, et al. recognize that this offers an opportunity to visually recognize and identify ads as a human would be able to.
@@ -119,13 +122,13 @@ In order to assess the impact of ad-blockers on performance, we performed an exp
 The five sites which we chose to measure load times on were the five most popular news sites based on the Alexa ranking~\cite{alexa}
 We loaded each site 10 times under each condition and averaged the results, closing the browser between loads to ensure that a full rendering occured.
 Page load times were measured using the Chrome extension ``Page Load Time''~\cite{pageloadtime}, which considers a page fully loaded once all elements have finished rendering.
-We deliberately chose not to clear the local browser cache between page loads, recognizing that in practice web content is often cached locally.
-The results validate survey findings that many users use ad-blockers for performance reasons~\cite{hubspot2016adblock}, as there was an average of a 2.33x speedup in load time with uBlock enabled (Figure ~\ref{fig:load_times}).
+We deliberately chose not to clear the local browser cache between page loads, recognizing that in practice Web content is often cached locally.
+The results validate survey findings that many users use ad-blockers for performance reasons~\cite{hubspot2016adblock}, as there was an average of a 2.33x speedup in load time with uBlock Origin enabled (Figure ~\ref{fig:load_times}).
 
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.5\textwidth]{load_times}
-\caption{Loading times for five popular websites with and without the popular ad-blocker uBlock Origin.}
+\caption{Loading times for five popular Websites with and without the popular ad-blocker uBlock Origin.}
 \label{fig:load_times}
 \end{figure}
 
@@ -133,9 +136,9 @@ To assess the performance of our \textit{Un}acceptable Ads extensions, we perfor
 Our findings are consistent with our intuition: since uBlock Origin blocks based on network requests, performance should decrease as tolerance goes up.
 For the Perceptual Blocker, however, performance stays relatively constant regardless of tolerance, since ads are detected and hidden after they are loaded (Figure ~\ref{fig:load_times_over_range}).
 This difference highlights the key benefit to request-based blockers: performance.
-Preventing web requests from ever leaving the client browser results in a decrease in network traffic and the costly rendering of media elements.
+Preventing Web requests from ever leaving the client browser results in a decrease in network traffic and the costly rendering of media elements.
 One thing to note is that we consider a page to be done loading when the page is fully rendered, but this doesn't include the additional time required in the case of the perceptual blocker to identify and cover ads.
-While this occurs quickly, there is some computational overhead associated with visually scanning the web page which should be considered when comparing the two techniques.
+While this occurs quickly, there is some computational overhead associated with visually scanning the Web page which should be considered when comparing the two techniques.
 
 \begin{figure}[h]
 \centering
@@ -159,7 +162,7 @@ This led to many hours spent just trying to figure out the end-to-end workflow o
 Our first iteration simply probabalistically let through ads which had been marked by one of the identification mechanisms, but this turned out to block far too many ads.The excessive blocking occurred because a given ad may have upwards of 10 redirects and requests associated with it, and blocking any of these would prevent the ad from being served.
 This led us to come up with a better solution: adding a second, position-based, cache which identified the position on the page of the iframe associated with an ad-related request and made a single decision to block or allow all requests for that iframe.
 Although not perfect (multiple ads could have a position, positions could change, etc), this additional cache provided far more predictable and accurate results.
-This development time was definitely well-spent, as we learned not only how ad-blockers function in practice, but had the opportunity to learn some javascript and the anatomy of browser extensions, both of which are integral parts of the modern web and aren't something we've worked with in the past.
+This development time was definitely well-spent, as we learned not only how ad-blockers function in practice, but had the opportunity to learn some javascript and the anatomy of browser extensions, both of which are integral parts of the modern Web and aren't something we've worked with in the past.
 
 Looking forward, there are many more directions to explore with this idea of user-configurable ad-blocking.
 For example, while a request-based blocker doesn't allow for blocking based on a display size threshold, one similar option that could be implemented is blocking based on media element size (i.e., in bytes).
