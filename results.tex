@@ -114,14 +114,12 @@ We use this additional information to block ads above a certain size, but this c
 \label{fig:unacceptable}
 \end{figure}
 
-\subsubsection{Summary and Technical Challenges}
-These extensions serve as two separate proofs of concept for a new generation of ad-blockers which could allow for a more fine-grained tuning of what types of ads are blocked.
-This approach can provide partial or full compensation for the publisher while addressing user concerns about the performance and/or visual issues associated with ads.
-We note that this solution does \textit{not} address the needs of users whose foremost concern is privacy, and leave that concern for future work.
-
 \subsection{Performance}
-In order to assess the impact of ad-blockers on performance, we performed an experiment to measure page load times across five popular sites, with and without uBlock Origin enabled.
-For each page, we took the average of five measurements of page load time (gathered from the Chrome extension Page Load Time~\cite{pageloadtime}).
+In order to assess the impact of ad-blockers on performance, we performed an experiment to measure page load times with and without uBlock Origin enabled.
+The five sites which we chose to measure load times on were the five most popular news sites based on the Alexa ranking~\cite{alexa}
+We loaded each site 10 times under each condition and averaged the results, closing the browser between loads to ensure that a full rendering occured.
+Page load times were measured using the Chrome extension "Page Load Time~\cite{pageloadtime}, which considers a page fully loaded once all elements have finished rendering.
+We deliberately chose not to clear the local browser cache between page loads, recognizing that in practice web content is often cached locally.
 The results backed up survey findings that many users use ad-blockers for performance reasons~\cite{hubspot2016adblock}, as there was a 2.33x speedup with uBlock enabled (Figure ~\ref{fig:load_times}).
 
 \begin{figure}[h]
@@ -132,8 +130,12 @@ The results backed up survey findings that many users use ad-blockers for perfor
 \end{figure}
 
 To assess the performance of our \textit{Un}acceptable Ads extensions, we performed a similar experiment by measuring page load times for the Chicago Tribune homepage at multiple different levels of ad tolerance.
-Our findings are consistent with our intuition: since uBlock blocks based on network requests, performance should decrease as tolerance goes up.
+Our findings are consistent with our intuition: since uBlock Origin blocks based on network requests, performance should decrease as tolerance goes up.
 For the Perceptual Blocker, however, performance stays relatively constant regardless of tolerance, since ads are detected and hidden after they are loaded (Figure ~\ref{fig:load_times_over_range}).
+This difference highlights the key benefit to request-based blockers: performance.
+Preventing web requests from ever leaving the client browser results in a decrease in network traffic and the costly rendering of media elements.
+One thing to note is that we consider a page to be done loading when the page is fully rendered, but this doesn't include the additional time required in the case of the perceptual blocker to identify and cover ads.
+While this occurs quickly, there is some computational overhead associated with visually scanning the web page which should be considered when comparing the two techniques.
 
 \begin{figure}[h]
 \centering
@@ -141,3 +143,9 @@ For the Perceptual Blocker, however, performance stays relatively constant regar
 \caption{Loading times for Chicago Tribune homepage with varying levels of tolerance for ads using the \textit{Un}acceptable Ads extension (``Perceptual Blocker'') and a modified version of uBlock Origin.}
 \label{fig:load_times_over_range}
 \end{figure}
+
+\subsubsection{Summary and Technical Challenges}
+These extensions serve as two separate proofs of concept for a new generation of ad-blockers which could allow for a more fine-grained tuning of what types of ads are blocked.
+This approach can provide partial or full compensation for the publisher while addressing user concerns about the performance and/or visual issues associated with ads.
+We note that this solution does \textit{not} address the needs of users whose foremost concern is privacy, and leave that concern for future work.
+
