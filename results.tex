@@ -146,6 +146,13 @@ While this occurs quickly, there is some computational overhead associated with 
 
 \subsubsection{Summary and Technical Challenges}
 These extensions serve as two separate proofs of concept for a new generation of ad-blockers which could allow for a more fine-grained tuning of what types of ads are blocked.
-This approach can provide partial or full compensation for the publisher while addressing user concerns about the performance and/or visual issues associated with ads.
+This approach can provide partial or full compensation for the publisher while still addressing user concerns about the performance and/or visual issues associated with ads.
 We note that this solution does \textit{not} address the needs of users whose foremost concern is privacy, and leave that concern for future work.
 
+TECHNICAL CHALLENGES HERE
+
+Looking forward, there are many more directions to explore with this idea of user-configurable ad-blocking.
+For example, while a request-based blocker doesn't allow for blocking based on a display size threshold, one similar option that could be implemented is blocking based on media element size (i.e., in bytes).
+The size of an element is often included in the metadata of a redirect from an advertiser server, so blocking based on a simple check could be implemented trivially.
+One issue with this approach, however, is that we must still go through the chain of redirects which determine what ad will be served and log the impression on the publisher's end.
+Blocking an ad after these requests have occurred put some stress on the publisher and marketer servers, and reduce some of the performance benefit realized on the user end.
