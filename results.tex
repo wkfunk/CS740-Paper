@@ -25,11 +25,11 @@ Many Web publishers survive exclusively off of ad revenue, and they cannot be ex
 Finally, the system must provide control over the browsing experience for both users and publishers alike.
 Currently, publishers are essentially locked in to using a combination of subscription and ad tactics for revenue and users are locked in to paying for these subscriptions and seeing ads across the Web.
 We want to provide an alternative which can be opted into and out of easily for both publishers and users, which lets them shape their own browsing experience.
-By enabling them to recoup some of the lost revenue due to blockers, and enabling users to opt-in to funding their favorite content, both parties benefit.
+By enabling publishers to recoup some of the lost revenue due to blockers, and enabling users to opt-in to funding their favorite content, both parties benefit.
 
 \subsubsection{Architecture}
-Our solution relies on fact that ad exchanges are efficient marketplaces for determining the fair value for a given piece of real estate on the internet.
-In order to take advantage of this fact, Harpocrates sits inline in the ``waterfall'' (Figure ~\ref{fig:waterfall}).
+Our solution relies on fact that publishers ad servers and ad exchanges are efficient marketplaces for determining the fair value for a given piece of ``real estate'' on the internet.
+In order to take advantage of this fact, Harpocrates sits inline in the ``waterfall'' that currently exists in many publisher ad servers (Figure ~\ref{fig:waterfall}).
 
 \begin{figure}[h]
 \centering
@@ -39,7 +39,7 @@ In order to take advantage of this fact, Harpocrates sits inline in the ``waterf
 \end{figure}
 
 From the publisher's point of view, Harpocrates is essentially another ad network, which, given an impression, returns a bid for the ad (or none).
-Hence, its implementation cost is no higher than that of adding another ad network for a given publisher.
+Hence, its implementation cost is no higher than that of adding another ad network for a given publisher and it requires no additional infrastructure or protocol that isn't already there.
 
 From the user's point of view, Harpocrates is simply a browser extension.
 Given a number of initial settings (Figure ~\ref{fig:harpocrates_ui}), Harpocrates will make bids on the user's behalf for a given ad.
