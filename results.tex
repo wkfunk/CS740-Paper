@@ -84,7 +84,7 @@ To realize this idea, we have modified two Chrome extensions: uBlock Origin, a r
 uBlock Origin is a popular open source desktop ad-blocker with nearly 9 million installs on Google Chrome as of May 2017.
 This blocker is categorized as a request-based blocker, meaning that it recognizes Web requests which are targeted at ad-related servers and prevents them from ever leaving the client's browser.
 This strategy offers significant performance benefits, as it reduces network traffic and prevents (often large) media elements from being received and rendered in the client browser.
-Identifying ad-related network requests is done by matching target URLs against a list of known advertising URLs (e.g. EasyList~\cite{easylist}).
+Identifying ad-related network requests is done by matching target URLs against a list of known advertising URLs (e.g., EasyList~\cite{easylist}).
 The extension uses multiple such community-maintained lists, and matches against them using a combination of simple lookups and regular expressions.
 
 Our modification to the uBlock Origin is a notion of ``Ad Tolerance'', a configurable setting from 0-100\% which determines what proportion of ads will be shown to the user on any given page.
