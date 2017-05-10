@@ -124,6 +124,12 @@ We also added a second configuration to this blocker, which allows the user to s
 This highlights a key benefit to the perceptual blocker, because the ads are completely delivered before blocking occurs, the blocker has a more complete set of information about the ad's qualities (e.g., size, content, placement on the page) when the blocking decision is made.
 We use this additional information to block ads above a certain size, but this could be extended to other configurations, such as recognizing and blocking inappropriate ads.
 
+
+Our first modification to the perceptual blocker is the same as that which we made to uBlock Origin, adding a configurable tolerance level which probabalistically blocks the ads it encounters.
+We also added a second configuration to this blocker, which allows the user to specify a maximum width and height of ad elements which they are willing to see (Figure ~\ref{fig:unacceptable_ui}).
+This highlights a key benefit to the perceptual blocker, because the ads are completely delivered before blocking occurs, the blocker has a more complete set of information about the ad's qualities (e.g., size, content, placement on the page) when the blocking decision is made.
+We use this additional information to block ads above a certain size, but this could be extended to other configurations, such as recognizing and blocking inappropriate ads.
+
 \subsection{Performance}
 In order to assess the impact of ad-blockers on performance, we performed an experiment to measure page load times with and without uBlock Origin enabled.
 The five sites which we chose to measure load times on were the five most popular news sites based on the Alexa ranking~\cite{alexa}.
@@ -141,7 +147,7 @@ The results validate survey findings that many users use ad-blockers for perform
 
 To assess the performance of our \textit{Un}acceptable Ads extensions, we performed a similar experiment by measuring page load times for the Chicago Tribune homepage at multiple different levels of ad tolerance.
 Our findings are consistent with our intuition: since uBlock Origin blocks based on network requests, performance should decrease as tolerance goes up.
-For the Perceptual Blocker, however, performance stays relatively constant regardless of tolerance, since ads are detected and hidden after they are loaded (Figure ~\ref{fig:load_times_over_range}).
+For the perceptual plocker, however, performance stays relatively constant regardless of tolerance, since ads are detected and hidden after they are loaded (Figure ~\ref{fig:load_times_over_range}).
 This difference highlights the key benefit to request-based blockers: performance.
 Preventing Web requests from ever leaving the client browser results in a decrease in network traffic and the costly rendering of media elements.
 One thing to note is that we consider a page to be done loading when the page is fully rendered, but this doesn't include the additional time required in the case of the perceptual blocker to identify and cover ads.
