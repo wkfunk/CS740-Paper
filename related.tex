@@ -3,13 +3,13 @@
 
 \subsection{Academic}\label{academic_related}
 The idea of using ``digital cash'' to facilitate transactions online experienced substantial popularity in the late 1980's and early 1990's.
-Chaum was one of the first to introduce the concept of an anonymous, untraceable micropayments (then, a ``blind signature cryptosystem'')~\cite{chaum1983blind}.
+Chaum was one of the first to introduce the concept of anonymous, untraceable micropayments (then, a ``blind signature cryptosystem'')~\cite{chaum1983blind}.
 Later, this work was expanded to prevent duplication of coins~\cite{chaum1990untraceable}, and eventually spun off into the company DigiCash~\cite{schoenmakers1998security}.
-Dukach's SNPP (Simple Network Payment Protocol) represents one of the first fully-described micropayment protocols~\cite{dukach1992snpp}.
+Dukach's SNPP (Simple Network Payment Protocol) represents one of the first fully-described protocols for micropayment~\cite{dukach1992snpp}.
 Wheeler~\cite{wheeler1997transactions} and Rivest~\cite{rivest1997electronic} studied ``probabilistic'' micropayment schemes, in which the ``bank'' only cashes a small percentage of ``checks'', but in the long run everyone ends up paying the correct amount of money.
 This work spawned the startup Peppercoin, which was eventually acquired.
 Work at DEC on Millicent~\cite{manasse1995millicent} inspired Rivest and Shamir's work on two schemes, PayWord (credit-based) and MicroMint (less secure but faster)~\cite{rivest1997payword}, although these same ideas had been proposed shortly before by Anderson et al.~\cite{anderson1997netcard}.
-IBM developed a micropayment-based extension for their \textit{i}KP macropayment system~\cite{hauser1996micro}.
+IBM also developed a micropayment-based extension for their \textit{i}KP macropayment system~\cite{hauser1996micro}.
 
 Although each of these projects had unique approaches to architecture and implementation details, the design parameters primarily revolved around some subset of anonymity, reliability, trust, scalability, usability, and security. Some work has been done to classify and characterize these manifold schemes across various axes~\cite{abrazhevich2001classification,parhonyi2005second,parhonyi2006fall}. They each foresaw the advent of small transactions on the Web for content like music (e.g. \$1 songs on iTunes), however the majority of work was invested in the technology rather than supporting and increasing adoption. In particular, the need for widespread adoption of a micropayment system by both customers and sellers led to the eventual death of each system in its own time.
 
@@ -17,7 +17,7 @@ Although each of these projects had unique approaches to architecture and implem
 Interest in online microtransactions has experienced a growing resurgence over the last decade.
 As the use of ad-blocking software continues to grow worldwide, publishers and users alike realize that we must consider new models for financing the Web as we know it.
 
-One such attempt is a model which participates in ad auctions on behalf of the end user, such as Google's Contributor program~\cite{contributor}, which is now discontinued, and Atri~\cite{atri}.
+One such attempt is a system which participates in ad auctions on behalf of the end user, such as Google's Contributor program~\cite{contributor}, which is now discontinued, and Atri~\cite{atri}.
 Though this approach will tend to find the market value for space on a given page, it includes network and computational overhead in order to participate in auctions before serving the page.
 This limits the performance benefit of removing ads from internet browsing, and also requires building and installing software to participate in each ad exchange.
 Additionally, Google Contributor was limited exclusively to advertisements served via Google AdSense, which resulted in a user experience which was only partially ad-free~\cite{adsense}.
@@ -25,13 +25,13 @@ Additionally, Google Contributor was limited exclusively to advertisements serve
 Brave, a fork of the Firefox project, is a new browser which allows users to divide up a monthly subscription to the sites that they visit most often via Bitcoin-based micropayments~\cite{brave}.
 The project uses the cryptographically secure Anonize protocol~\cite{anonize} to prevent a user's browsing history from being linked to their identity.
 Systems like these will face scalability concerns with organizing payments when dealing with a large number of content producers and consumers.
-Additionally, requiring the use of an entirely different browser adds a barrier of entry for new users.
+Additionally, requiring the use of an entirely different browser adds a barrier to entry for new users.
 
 Sourcepoint~\cite{sourcepoint} and Blendle~\cite{blendle} offer consumers a “content pass” which allows them access to a variety of content providers for a monthly subscription.
 This approach is very similar to the ``paywall'' which is currently implemented on many major publisher sites, and will require cooperation from many large publishing players in order to be feasible at a larger scale.
 
 SatoshiPay~\cite{satoshi} and Autotip~\cite{autotip} allow users to send micropayments in Bitcoin.
-However, Bitcoin transaction fees have increased so much in recent years that micropayments are almost infeasible.
+However, Bitcoin transaction fees have increased so much in recent years that micropayments using the currency are almost infeasible.
 
 Flattr Plus~\cite{flattrplus} (a partnership between Flattr and Adblock Plus) allows consumers to distribute a monthly subscription among selected content provides.
 Although the intersection of these two user bases is quite large (ad-blocker users and those who want to contribute to content providers), the implementation currently uses a browser extension to track user behavior, leading to privacy concerns
