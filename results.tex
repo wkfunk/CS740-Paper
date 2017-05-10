@@ -149,7 +149,14 @@ These extensions serve as two separate proofs of concept for a new generation of
 This approach can provide partial or full compensation for the publisher while still addressing user concerns about the performance and/or visual issues associated with ads.
 We note that this solution does \textit{not} address the needs of users whose foremost concern is privacy, and leave that concern for future work.
 
-There was a large gap in the technical challenge presented by 
+There was a large difference in the technical challenge presented by making modifications to uBlock Origin and to the perceptual blocker.
+In the case of the perceptual blocker, the ad recognition and covering sections of the code were completely separate, allowing us to add our tweaks to the covering code (only called when an ad is recognized) in only a few simple lines.
+Our understanding of the extension was also aided by the fact that the perceptual blocker was well-commented and is more of a proof of concept than a production-ready piece of software, meaning that there were far fewer optimizations and less corner-case handling.
+This allowed us to easily fit our modifications in to only one section of the code with minimal debugging pain.
+On the other hand, uBlock Origin is a more complicated piece of software, which includes many optimizations to reduce the memory footprint and computational overhead of its ad-blocking.
+
+The ease of understanding the perceptual blocker code was aided by the fact that it is more of a proof of concept than a production-ready piece of software.
+This means there are far fewer optimizations and 
 
 Looking forward, there are many more directions to explore with this idea of user-configurable ad-blocking.
 For example, while a request-based blocker doesn't allow for blocking based on a display size threshold, one similar option that could be implemented is blocking based on media element size (i.e., in bytes).
